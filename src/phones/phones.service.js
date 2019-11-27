@@ -229,11 +229,44 @@ export const PhonesService = new class {
         console.log('init PhonesService');
     }
 
-    getAll() {
-        return mockedPhones;
+    getAll({searchText, orderBy} = {}) {
+       return new Promise((res, rej)=>{
+            setTimeout(()=>{
+                const searchedPhones = this._search(mockedPhones, searchText);
+                const sorted = this._sort(searchedPhones, orderBy);
+                res(sorted);
+            },2000)
+        })
+
+        // return searchedPhones;
     }
 
     getOneById(id) {
         return mockedPhone;
     }
+
+    _search(phones, searchText) {
+        if (!searchText) {
+            return phones;
+        }
+        return phones.filter((phone) =>
+            phone.name.toLowerCase().includes(searchText.toLowerCase()))
+    }
+
+    _sort(phones, orderBy) {
+        if (!orderBy) {
+            return phones;
+        }
+        phones.sort((phone1, phone2) => {
+            if(phone1[orderBy] > phone2[orderBy]){
+                return 1;
+            }
+            if(phone1[orderBy] < phone2[orderBy]){
+                return -1;
+            }
+            return 0;
+        })
+        return phones;
+    }
 };
+
