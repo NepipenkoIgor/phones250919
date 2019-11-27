@@ -3,6 +3,7 @@ import {PhonesService} from "./phones.service.js";
 import {PhonesDetailsComponent} from "./phones-details/phones-details.component.js";
 import {BaseComponent} from "../shared/components/base/base.component.js";
 import {CartComponent} from "./cart/cart.component.js";
+import {FilterComponent} from "./filter/filter.component.js";
 
 
 export class PhonesComponent extends BaseComponent {
@@ -12,13 +13,14 @@ export class PhonesComponent extends BaseComponent {
         this._initCatalog();
         this._initDetails();
         this._initCart();
+        this._initFilter();
     }
 
     _initCatalog() {
         this._catalog = new PhonesCatalogComponent({
             element: this._element.querySelector('.phones-catalog'),
-            phones: PhonesService.getAll()
         });
+        this._showFilteredPhones();
         this._catalog
             .subscribe('phone-selected', ({detail: phoneId}) => {
                 const phone = PhonesService.getOneById(phoneId);
@@ -34,7 +36,7 @@ export class PhonesComponent extends BaseComponent {
             element: this._element.querySelector('.phones-details'),
         });
         this._details.subscribe('back', ({detail: phoneId}) => {
-            this._catalog.show();
+            this._showFilteredPhones();
             this._details.hide();
         })
             .subscribe('add-to-cart', ({detail: phoneId}) => this._cart.add(phoneId))
@@ -46,23 +48,32 @@ export class PhonesComponent extends BaseComponent {
         })
     }
 
+    _initFilter() {
+        this._filter = new FilterComponent({
+            element: this._element.querySelector('.filter'),
+        });
+        this._filter.subscribe('search', ({detail: searchText}) => {
+            this.searchText = searchText;
+            this._showFilteredPhones()
+        });
+        this._filter.subscribe('change-order', ({detail: orderBy}) => {
+            this.orderBy = orderBy;
+            this._showFilteredPhones()
+        })
+    }
+
+    async _showFilteredPhones() {
+        const phones = await PhonesService.getAll({searchText: this.searchText, orderBy: this.orderBy})
+        this._catalog.show(phones);
+    }
+
     _render() {
         this._element.innerHTML = `
             <div class="row">
       <!--Sidebar-->
       <div class="col-md-2">
-        <section>
-          <p>
-            Search:
-            <input>
-          </p>
-          <p>
-            Sort by:
-            <select>
-              <option value="name">Alphabetical</option>
-              <option value="age">Newest</option>
-            </select>
-          </p>
+        <section class="filter">
+  
         </section>
         <section class="cart"></section>
       </div>

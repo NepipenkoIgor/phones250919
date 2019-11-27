@@ -1,10 +1,9 @@
 import {BaseComponent} from "../../shared/components/base/base.component.js";
 
 export class PhonesCatalogComponent extends BaseComponent {
-    constructor({element, phones}) {
+    constructor({element}) {
         super({element});
-        this._phones = phones;
-        this._render();
+        this._phones = [];
         this
             .on('click', '.thumb', (e) => {
                 const {phoneId} = e.delegatedTarget.dataset;
@@ -14,8 +13,12 @@ export class PhonesCatalogComponent extends BaseComponent {
                 const {phoneId} = e.delegatedTarget.dataset;
                 this.emit('add-to-cart', phoneId)
             })
+    }
 
-
+    show(phones) {
+        this._phones = phones;
+        this._render();
+        super.show();
     }
 
     _render() {

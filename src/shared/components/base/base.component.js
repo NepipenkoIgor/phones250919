@@ -24,7 +24,7 @@ export class BaseComponent {
     }
 
     subscribe(eventName, cb) {
-        this._element.addEventListener(eventName, cb)
+        this._element.addEventListener(eventName, cb);
         return this;
     }
 
