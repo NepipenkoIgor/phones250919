@@ -1,4 +1,6 @@
-import {PhonesComponent} from './phones/phones.component.js';
+import {PhonesComponent} from './phones/phones.component';
 
 const element = document.querySelector('.root');
 new PhonesComponent({element});
+
+

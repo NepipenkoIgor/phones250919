@@ -1,5 +1,5 @@
-import {BaseComponent} from "../../shared/components/base/base.component.js";
-
+import {BaseComponent} from "../../shared/components/base/base.component";
+import template from './phones-details.component.hbs';
 export class PhonesDetailsComponent extends BaseComponent {
 
     constructor({element}) {
@@ -20,17 +20,7 @@ export class PhonesDetailsComponent extends BaseComponent {
     }
 
     _render() {
-        this._element.innerHTML = `
-        
-    <img class="phone">
-    <button class="back">Back</button>
-    <button class="add">Add to basket</button>
-    <h1>${this._phone.name}</h1>
-    <p>${this._phone.description}</p>
-    <ul class="phone-thumbs">
-    ${this._phone.images.map((imgSrc) => `<li><img  class="phone-thumb" src=${imgSrc}></li>`).join('')}
-    </ul>  
-        `
+        this._element.innerHTML = template({phone: this._phone})
 
     }
 }
