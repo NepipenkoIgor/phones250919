@@ -1,4 +1,4 @@
-import {BaseComponent} from "../../shared/components/base/base.component";
+import {BaseComponent} from '../../shared/components/base/base.component';
 import template from './phones-details.component.hbs';
 export class PhonesDetailsComponent extends BaseComponent {
 

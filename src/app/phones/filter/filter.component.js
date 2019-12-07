@@ -1,4 +1,4 @@
-import {BaseComponent} from "../../shared/components/base/base.component";
+import {BaseComponent} from '../../shared/components/base/base.component';
 
 
 export class FilterComponent extends BaseComponent {

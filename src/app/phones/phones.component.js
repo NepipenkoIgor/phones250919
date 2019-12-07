@@ -1,9 +1,9 @@
-import {PhonesCatalogComponent} from "./phones-catalog/phones-catalog.component";
-import {PhonesService} from "./phones.service";
-import {PhonesDetailsComponent} from "./phones-details/phones-details.component";
-import {BaseComponent} from "../shared/components/base/base.component";
-import {CartComponent} from "./cart/cart.component";
-import {FilterComponent} from "./filter/filter.component";
+import {PhonesCatalogComponent} from './phones-catalog/phones-catalog.component';
+import {PhonesService} from './phones.service';
+import {PhonesDetailsComponent} from './phones-details/phones-details.component';
+import {BaseComponent} from '../shared/components/base/base.component';
+import {CartComponent} from './cart/cart.component';
+import {FilterComponent} from './filter/filter.component';
 import template from './phones.component.hbs';
 
 export class PhonesComponent extends BaseComponent {
@@ -12,13 +12,13 @@ export class PhonesComponent extends BaseComponent {
         this._render();
         this._initCatalog();
         this._initDetails();
-        this._initCart();
+        this._initCart()
         this._initFilter();
     }
 
     _initCatalog() {
         this._catalog = new PhonesCatalogComponent({
-            element: this._element.querySelector('.phones-catalog'),
+            element: this._element.querySelector('.phones-catalog')
         });
         this._showFilteredPhones();
         this._catalog

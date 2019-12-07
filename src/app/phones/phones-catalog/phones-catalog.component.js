@@ -1,4 +1,4 @@
-import {BaseComponent} from "../../shared/components/base/base.component";
+import {BaseComponent} from '../../shared/components/base/base.component';
 import './phones-catalog.component.css'
 export class PhonesCatalogComponent extends BaseComponent {
     constructor({element}) {

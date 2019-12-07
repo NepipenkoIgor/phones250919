@@ -6,7 +6,7 @@ export const PhonesService = new class {
     }
 
     async getAll({searchText, orderBy} = {}) {
-        const phones = await this._sendRequest(`/phones/phones.json`);
+        const phones = await this._sendRequest('/phones/phones.json');
         const searchedPhones = this._search(phones, searchText);
         return this._sort(searchedPhones, orderBy);
     }
