@@ -1,5 +1,5 @@
 import {BaseComponent} from '../../shared/components/base/base.component';
-import template from './cart.component.hbs'
+import template from './cart.component.hbs';
 export class CartComponent extends BaseComponent {
     constructor({element}) {
         super({element});
@@ -25,7 +25,7 @@ export class CartComponent extends BaseComponent {
     }
 
     _render() {
-        this._element.innerHTML = template({phones: this._phones})
+        this._element.innerHTML = template({phones: this._phones});
     }
 
 }

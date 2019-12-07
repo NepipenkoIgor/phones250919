@@ -1,5 +1,5 @@
 import {BaseComponent} from '../../shared/components/base/base.component';
-import './phones-catalog.component.css'
+import './phones-catalog.component.css';
 export class PhonesCatalogComponent extends BaseComponent {
     constructor({element}) {
         super({element});
@@ -7,12 +7,12 @@ export class PhonesCatalogComponent extends BaseComponent {
         this
             .on('click', '.thumb', (e) => {
                 const {phoneId} = e.delegatedTarget.dataset;
-                this.emit('phone-selected', phoneId)
+                this.emit('phone-selected', phoneId);
             })
             .on('click', 'a.add', (e) => {
                 const {phoneId} = e.delegatedTarget.dataset;
-                this.emit('add-to-cart', phoneId)
-            })
+                this.emit('add-to-cart', phoneId);
+            });
     }
 
     show(phones) {
@@ -37,10 +37,10 @@ export class PhonesCatalogComponent extends BaseComponent {
                            <a href="#!/phones/${phone.id}">${phone.name}</a>
                            <p>${phone.snippet}</p>
                      </li>
-           `
+           `;
         }).join('')}
         </ul>
         
-        `
+        `;
     }
 }

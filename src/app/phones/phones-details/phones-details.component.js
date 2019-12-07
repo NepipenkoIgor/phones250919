@@ -6,8 +6,8 @@ export class PhonesDetailsComponent extends BaseComponent {
         super({element});
         this
             .on('click', '.phone-thumb', ({delegatedTarget: {src}}) => this._mainImage.src = src)
-            .on('click', '.back', (e) => this.emit('back'))
-            .on('click', '.add', (e) => this.emit('add-to-cart', this._phone.id))
+            .on('click', '.back', () => this.emit('back'))
+            .on('click', '.add', () => this.emit('add-to-cart', this._phone.id));
     }
 
 
@@ -20,7 +20,7 @@ export class PhonesDetailsComponent extends BaseComponent {
     }
 
     _render() {
-        this._element.innerHTML = template({phone: this._phone})
+        this._element.innerHTML = template({phone: this._phone});
 
     }
 }

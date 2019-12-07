@@ -37,9 +37,9 @@ export const PhonesService = new class {
             ]
         });
         if (res.status !== 200) {
-            throw new Error(res.statusText)
+            throw new Error(res.statusText);
         }
-        return res.json()
+        return res.json();
     }
 
     _search(phones, searchText) {
@@ -47,7 +47,7 @@ export const PhonesService = new class {
             return phones;
         }
         return phones.filter((phone) =>
-            phone.name.toLowerCase().includes(searchText.toLowerCase()))
+            phone.name.toLowerCase().includes(searchText.toLowerCase()));
     }
 
     _sort(phones, orderBy) {
@@ -62,7 +62,7 @@ export const PhonesService = new class {
                 return -1;
             }
             return 0;
-        })
+        });
         return phones;
     }
 };
